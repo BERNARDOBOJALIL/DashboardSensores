@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard de Sensores</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Dashboard de Sensores</h1>
+    </header>
+    <main>
+        <section class="sensor-dashboard">
+            <div class="sensor-card">
+                <h4>Estado del Botón</h4>
+                <p id="button-state"><?php echo $DATO_lectura; ?></p>
+            </div>
+            <div class="sensor-card">
+                <h4>Movimiento Detectado</h4>
+                <p id="movement-state"><?php echo $MOVIMIENTO_lectura; ?></p>
+            </div>
+            <div class="sensor-card">
+                <h4>Temperatura</h4>
+                <p id="temperature-value"><?php echo $TEMPERATURA_lectura; ?></p>
+            </div>
+
+            <div class="sensor-card">
+              <h4>Datos de Potenciómetro (ThingSpeak)</h4>
+              <div align="center">
+                <iframe 
+                  src="https://thingspeak.com/channels/2854136/charts/1?bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=60&type=line&update=15&width=700"
+                  style="width: 700px; height: 400px; border: none; margin: 0 auto;"
+                ></iframe>
+              </div>
+            </div>
+
+
+
+
+
+        </section>
+    </main>
+   
+    <script>
+        document.getElementById("current-year").textContent = new Date().getFullYear();
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
