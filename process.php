@@ -24,7 +24,7 @@ if(!file_exists("datos.txt")) {
 $ARCHIVO = file_get_contents("datos.txt");
 debugLog("Contenido actual de datos.txt: " . trim($ARCHIVO));
 
-// Manejar datos del botón
+// Manejo de parámetros
 if(isset($_GET['DATO'])) {
     $DATO_var = $_GET['DATO'];
     debugLog("Valor de DATO recibido: " . $DATO_var);
@@ -41,7 +41,6 @@ if(isset($_GET['DATO'])) {
     }
 }
 
-// Manejar datos del PIR
 if(isset($_GET['MOVIMIENTO'])) {
     $MOVIMIENTO_var = $_GET['MOVIMIENTO'];
     debugLog("Valor de MOVIMIENTO recibido: " . $MOVIMIENTO_var);
@@ -58,7 +57,6 @@ if(isset($_GET['MOVIMIENTO'])) {
     }
 }
 
-// Manejar datos de la temperatura
 if(isset($_GET['TEMPERATURA'])) {
     $TEMPERATURA_var = $_GET['TEMPERATURA'];
     debugLog("Valor de TEMPERATURA recibido: " . $TEMPERATURA_var);
@@ -82,7 +80,7 @@ $DATO_lectura = trim($datos[0]);
 $MOVIMIENTO_lectura = trim($datos[1]);
 $TEMPERATURA_lectura = trim($datos[2]);
 
-// Si es una solicitud JSON
+// Respuesta JSON
 if(isset($_GET['json'])) {
     header('Content-Type: application/json');
     $response = array(
@@ -95,7 +93,9 @@ if(isset($_GET['json'])) {
     exit;
 }
 
-// Colores dinámicos
-$colorBoton = ($DATO_lectura == "1") ? "red" : "black";
-$colorPIR = ($MOVIMIENTO_lectura == "1") ? "blue" : "black";
+// Si no es una solicitud JSON, establecer colores dinámicos
+if (!isset($_GET['json'])) {
+    $colorBoton = ($DATO_lectura == "1") ? "red" : "black";
+    $colorPIR = ($MOVIMIENTO_lectura == "1") ? "blue" : "black";
+}
 ?>
